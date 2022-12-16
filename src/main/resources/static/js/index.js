@@ -31,9 +31,10 @@ function buildButton(label, route) {
 require(
     [
         'views/main',
+        'views/checks',
         'util/resourceProxy',
     ],
-    function(main, resourceProxy) {
+    function(main,checks, resourceProxy) {
     webix.ready(function() {
         webix.ui({
             container: 'app',
@@ -54,6 +55,7 @@ require(
     })
 
     routie({
-        '': buildRoute(main)
+        '': buildRoute(main),
+        'checks': buildRoute(checks)
     })
 })

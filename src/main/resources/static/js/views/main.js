@@ -153,13 +153,7 @@ define(['views/checks'],
                                         onItemDblClick: function(id) {
                                             window.globalVar = id
                                             let rowdata = this.getItem(id)
-                                       //     webix.ui(checks, $$('root'))
-                                            webix.ui({
-                                                id: 'root',
-                                                rows: [
-                                                    checks
-                                                ]
-                                            }, $$('root'))
+                                            routie('checks')
                                             $$('searchChecklist').callEvent('onItemClick')
                                         },
                                         onBeforeLoad: function () {

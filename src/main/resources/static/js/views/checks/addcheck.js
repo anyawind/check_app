@@ -26,6 +26,7 @@ define([],function () {
                             .post('/api/checks/new', JSON.stringify(params))
                             .then(function(resp) {
                                 webix.alert('Запись успешно сохранена')
+                                $$('searchBtn').callEvent('onItemClick')
                             })
                             .catch(function(resp) {
                                 webix.alert('Не удалось выполнить сохранение')

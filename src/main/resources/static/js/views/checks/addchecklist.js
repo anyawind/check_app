@@ -26,6 +26,7 @@ define(['collections/checks'],function (checks) {
                             .post('/api/checks/newchecklist?chname='+params.chname, JSON.stringify(params))
                             .then(function(resp) {
                                 webix.alert('Запись успешно сохранена')
+                                $$('searchChecklist').callEvent('onItemClick')
                             })
                             .catch(function(resp) {
                                 webix.alert('Не удалось выполнить сохранение')
@@ -65,7 +66,7 @@ define(['collections/checks'],function (checks) {
                             view: 'form',
                             id: 'addchecklist',
                             elements: [
-                                {view: 'select',name: 'chname', options: checks,label: 'Проверка',labelWidth: LABEL_WIDTH},
+                                {view: 'richselect', name: 'chname', options: checks,label: 'Проверка',labelWidth: LABEL_WIDTH},
                                 {view: 'textarea',name: 'nameCh',label: 'Наименование чек-листа',height: 40,labelWidth: LABEL_WIDTH},
                             ]
                         },

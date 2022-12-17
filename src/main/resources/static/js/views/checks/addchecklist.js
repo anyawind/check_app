@@ -1,12 +1,6 @@
 define(['collections/checks'],function (checks) {
     const LABEL_WIDTH = 200
 
-//    let check = checks
-//    alert(check)
-
-
-    let chname
-
     let buttons = {
         cols: [
             {},
@@ -22,7 +16,9 @@ define(['collections/checks'],function (checks) {
 
                     let validate = true;
 
-                    alert(params.chname)
+                    if(params.nameCh === '') {
+                        validate = false
+                    }
 
                     if(validate){
                         webix.ajax()
@@ -71,10 +67,8 @@ define(['collections/checks'],function (checks) {
                             elements: [
                                 {view: 'select',name: 'chname', options: checks,label: 'Проверка',labelWidth: LABEL_WIDTH},
                                 {view: 'textarea',name: 'nameCh',label: 'Наименование чек-листа',height: 40,labelWidth: LABEL_WIDTH},
-
                             ]
                         },
-
                     },
                     buttons
                 ]

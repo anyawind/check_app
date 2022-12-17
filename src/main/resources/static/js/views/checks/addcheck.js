@@ -13,8 +13,12 @@ define([],function () {
                 click: function () {
                     let modal = $$('addcheck_layout').getTopParentView();
                     let params = $$('addcheck').getValues()
-
                     let validate = true;
+
+                    if(params.nameCh === '' || params.fio === '' || params.address === ''||
+                        params.number === '' || params.nameobj === '') {
+                        validate = false
+                    }
 
                     if(validate){
                         webix.ajax()
@@ -32,7 +36,7 @@ define([],function () {
                         }, 0)
                     }
                     else {
-                        webix.message('Неверный формат данных')
+                        webix.message('Все поля должны быть заполнены')
                     }
                 }
             },

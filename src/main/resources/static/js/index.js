@@ -48,7 +48,7 @@ require(
                 {
                     view: 'toolbar',
                     cols: [
-                        buildButton('Home', ''),
+                        buildButton('На главную', ''),
                     ]
                 },
                 {

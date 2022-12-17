@@ -16,9 +16,10 @@ define([],
                     template: "1",
                     body: {
                         rows: [
+                            {view: 'text', id:'info',height: 40,readonly: true},
                             {
                                 view: 'toolbar',
-                                height: 60,
+                                height: 40,
                                 elements: [
                                     {
                                         view: 'flexlayout',
@@ -36,12 +37,26 @@ define([],
                                                         css: 'webix_primary',
                                                         on: {
                                                             onItemClick: function () {
-                                                                webix.ajax()
+                                                                let prst
+                                                                switch (window.globalVar.status) {
+                                                                case 0:
+                                                                    prst = 'В процессе'
+                                                                    break
+                                                                case 1:
+                                                                    prst = 'Завершена'
+                                                                    break
+                                                                default:
+                                                                    prst = 'В процессе'
+                                                                }
+                                                                let info = 'Проверка: ' + window.globalVar.nameCh + ' ФИО проверяющего: ' + window.globalVar.fio + ' Наименование обьекта: ' + window.globalVar.nameobj + ' Адрес объекта: ' + window.globalVar.address + ' Статус: ' + prst + ' Номер: ' + window.globalVar.number
+                                                                    webix.ajax()
                                                                     .headers({'Content-type': 'application/json'})
-                                                                    .get('api/checks/getchecklist?id=' + window.globalVar)
+                                                                    .get('api/checks/getchecklist?id=' + window.globalVar.id)
                                                                     .then(function (resp) {
                                                                         $$('checklist').clearAll()
                                                                         $$('checklist').parse(resp.json())
+                                                                        $$('info').define("value",info);
+                                                                        $$('info').refresh();
                                                                     })
                                                                     .catch(function () {
                                                                         webix.message('error', 'error')
@@ -105,12 +120,7 @@ define([],
                         cols: [
                             {
                                 rows: [
-                                    {
-                                        view: 'template',
-                                        height: 30,
-                                        template: '<b>Чек-лист</b>',
-                                        borderless: true
-                                    },
+                                    view_section('Чек-лист'),
                                     {
                                         view: 'datatable',
                                         editable: true,

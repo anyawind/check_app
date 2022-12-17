@@ -1,5 +1,5 @@
-define(['views/checks'],
-    function(checks) {
+define([],
+    function() {
 
     webix.i18n.setLocale('ru-RU')
 
@@ -141,7 +141,7 @@ define(['views/checks'],
                                         },
                                         {id: 'number', header: 'Номер', sort: 'int'},
                                     ],
-                            //        url: 'resource->api/checks/',
+                            //        url: 'proxy->api/checks/',
                                     scheme: {
                                         $init: function (obj) {
                                             if (obj) {
@@ -151,10 +151,9 @@ define(['views/checks'],
                                     },
                                     on: {
                                         onItemDblClick: function(id) {
-                                            window.globalVar = id
                                             let rowdata = this.getItem(id)
+                                            window.globalVar = rowdata
                                             routie('checks')
-                                            $$('searchChecklist').callEvent('onItemClick')
                                         },
                                         onBeforeLoad: function () {
                                             this.hideOverlay();

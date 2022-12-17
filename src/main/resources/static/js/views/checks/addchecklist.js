@@ -36,7 +36,7 @@ define(['collections/checks'],function (checks) {
                         }, 0)
                     }
                     else {
-                        webix.message('Неверный формат данных')
+                        webix.message('Все поля должны быть заполнены')
                     }
                 }
             },

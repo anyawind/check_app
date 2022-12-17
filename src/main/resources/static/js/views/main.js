@@ -77,6 +77,7 @@ define([],
                                                     id: 'searchBtn',
                                                     view: 'button',
                                                     label: 'Найти',
+                                                    hidden: true,
                                                     width: 80,
                                                     css: 'webix_primary',
                                                     on: {

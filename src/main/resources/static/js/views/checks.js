@@ -34,6 +34,7 @@ define([],
                                                         view: 'button',
                                                         label: 'Найти',
                                                         width: 100,
+                                                        hidden: true,
                                                         css: 'webix_primary',
                                                         on: {
                                                             onItemClick: function () {

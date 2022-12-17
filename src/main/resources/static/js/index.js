@@ -11,8 +11,12 @@ function buildRoute(view) {
                 view
             ]
         }, $$('root'))
-        $$('searchChecklist').callEvent('onItemClick')
-        $$('searchBtn').callEvent('onItemClick')
+        if($$('searchChecklist')) {
+            $$('searchChecklist').callEvent('onItemClick')
+        }
+        if($$('searchBtn')) {
+            $$('searchBtn').callEvent('onItemClick')
+        }
     }
 }
 

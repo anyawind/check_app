@@ -14,8 +14,8 @@ public interface ChecksRepository extends CrudRepository<Checks, Integer> {
             nativeQuery = true)
     Integer findIdByCheckName(@Param("name") String name);
 
-    @Query(value = "select * from public.checks where archive=0",
+    @Query(value = "select * from public.checks where status=0",
             nativeQuery = true)
-    List<Checks> findAllNotInArchive();
+        List<Checks> findAllUnderway();
 
 }

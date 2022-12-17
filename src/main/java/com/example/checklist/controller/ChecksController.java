@@ -25,16 +25,14 @@ public class ChecksController {
 
     @GetMapping("/")
     public List<Checks> getListCheks() {
-        List<Checks> list = StreamSupport.stream(checksRepository.findAllNotInArchive().spliterator(), false)
+        List<Checks> list = StreamSupport.stream(checksRepository.findAllUnderway().spliterator(), false)
                 .collect(Collectors.toList());
         return list;
     }
 
     @GetMapping("/getname")
     public List<String> getListChekNames() {
-   //     List<Checks> list = StreamSupport.stream(cheksRepository.findAll().spliterator(), false)
-    //            .collect(Collectors.toList());
-        List<Checks> list = StreamSupport.stream(checksRepository.findAllNotInArchive().spliterator(), false)
+        List<Checks> list = StreamSupport.stream(checksRepository.findAllUnderway().spliterator(), false)
                 .collect(Collectors.toList());
         List<String> listn = new ArrayList<>();
         for (Checks ch : list) {
@@ -46,7 +44,6 @@ public class ChecksController {
     @RequestMapping(value = "new", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Checks> create(
             @RequestBody Checks obj) {
-        obj.setArchive(0);
         obj.setStatus(0);
         Checks checks = checksRepository.save(obj);
         return ResponseEntity.ok().body(checks);
@@ -73,9 +70,6 @@ public class ChecksController {
     {
         Checklist checklist = null;
 
-        System.out.println(obj.getStatus());
-        System.out.println(dbObj.getStatus());
-
         Integer status = obj.getStatus();
         Integer statusDB = dbObj.getStatus();
 
@@ -95,7 +89,6 @@ public class ChecksController {
         if(checklistRepository.findByCheckIdProcessing(obj.getIdch()) == 0){
             Optional<Checks> optionalchecks = checksRepository.findById(obj.getIdch());
             Checks checks = optionalchecks.get();
-            checks.setArchive(1);
             checks.setStatus(1);
             checksRepository.save(checks);
         }

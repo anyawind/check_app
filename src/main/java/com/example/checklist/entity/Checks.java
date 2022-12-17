@@ -14,8 +14,6 @@ public class Checks {
     private Integer id;
     @Column(name = "name")
     private String nameCh;
-    @Column(name = "archive")
-    private Integer archive;
     @Column(name = "fio")
     private String fio;
     @Column(name = "address")

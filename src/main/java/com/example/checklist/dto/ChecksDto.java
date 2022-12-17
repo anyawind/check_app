@@ -8,7 +8,6 @@ import lombok.Setter;
 public class ChecksDto {
     private Integer id;
     private String nameCh;
-    private Integer archive;
     private String fio;
     private String address;
     private Integer status;
